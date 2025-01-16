@@ -1,7 +1,5 @@
-<% if user_signed_in? %> 
- <div> Welcome <%= current_user.email %> </div> 
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-<% else %>
-  <%= button_to "Sign in", new_user_session_path %> 
-<% end %>
-<h1>Esto es la landing page</h1>
+<div>
+  <h1>Gestor de Eventos Bomba</h1>
+  <button>Ver Eventos</button>
+  <%= link_to 'Eventos', events_path, class: "mx-2 text-teal-500 font-bold"%>
+</div>
