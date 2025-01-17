@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration[8.0]
       t.datetime :date_time
       t.string :location
       t.boolean :visibility
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

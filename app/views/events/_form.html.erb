@@ -1,34 +1,36 @@
 <%= form_with model: @event do |form| %>
-    <% @event.errors.full_messages.each do |error| %>
-        <div>
-            <%= error %>
-        </div>
-    <% end %>
-
-    <div>
-        <%= form.label :name %>
-        <%= form.text_field :name %>
+  <% @event.errors.full_messages.each do |error| %>
+    <div class="text-red-500 text-sm mb-2">
+      <%= error %>
     </div>
+  <% end %>
 
-    <div>
-        <%= form.label :description %>
-        <%= form.text_area :description %>
-    </div>
+  <div class="mb-4">
+    <%= form.label :name, class: "block text-gray-700 font-medium" %>
+    <%= form.text_field :name, class: "mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  </div>
 
-    <div>
-        <%= form.label :date_time, "Fecha del evento" %>
-        <%= form.datetime_field :date_time%>
-    </div>
+  <div class="mb-4">
+    <%= form.label :description, class: "block text-gray-700 font-medium" %>
+    <%= form.text_area :description, class: "mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  </div>
 
-    <div>
-        <%= form.label :location %>
-        <%= form.text_field :location %>
-    </div>
+  <div class="mb-4">
+    <%= form.label :date_time, "Fecha del evento", class: "block text-gray-700 font-medium" %>
+    <%= form.datetime_field :date_time, class: "mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  </div>
 
-    <div>
-        <%= form.label :visibility, "Privado" %>
-        <%= form.check_box :visibility %>
-    </div>
+  <div class="mb-4">
+    <%= form.label :location, class: "block text-gray-700 font-medium" %>
+    <%= form.text_field :location, class: "mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  </div>
 
-    <%= form.submit %>
+  <div class="mb-4">
+    <%= form.label :visibility, "Publico", class: "block text-gray-700 font-medium" %>
+    <%= form.check_box :visibility, class: "mt-1 text-indigo-500 focus:ring-indigo-500" %>
+  </div>
+
+  <div class="text-center">
+    <%= form.submit "Guardar evento", class: "mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  </div>
 <% end %>

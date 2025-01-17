@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, only: [ :new, :create ]
+
   def index
+    @events = Event.where(visibility: true)
   end
 
   def show
@@ -12,6 +15,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
 
     if @event.save
       redirect_to events_path, notice: "Tu Evento ha sido creado exitosamente."
@@ -27,6 +31,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :date_time, :location, :visibility)
+    params.require(:event).permit(:name, :description, :date_time, :location, :visibility, :user_id)
   end
 end
