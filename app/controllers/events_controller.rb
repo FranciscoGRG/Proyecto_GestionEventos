@@ -1,11 +1,13 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create ]
+  before_action :authenticate_user!, only: [ :new, :create, :edit ]
+  before_action :set_event, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @events = Event.where(visibility: true)
   end
 
   def show
+    @event
   end
 
   def new
@@ -24,13 +26,28 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @event
+  end
+
   def update
+    if @event.update(event_params)
+      redirect_to events_path, notice: "Tu evento se ha actualizado"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
   end
 
+  private
+
   def event_params
     params.require(:event).permit(:name, :description, :date_time, :location, :visibility, :user_id)
+  end
+
+  def set_event
+    @event ||= Event.find(params[:id])
   end
 end
