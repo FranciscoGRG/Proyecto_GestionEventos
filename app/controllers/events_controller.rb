@@ -38,8 +38,14 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
-  end
+   def destroy
+      if @event.user == current_user
+        @event.destroy
+        redirect_to events_path, notice: "Tu evento ha sido eliminado"
+      else
+        redirect_to events_path, alert: "No tienes permiso para eliminar este evento."
+      end
+   end
 
   private
 
