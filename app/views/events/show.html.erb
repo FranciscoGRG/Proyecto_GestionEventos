@@ -7,9 +7,14 @@
     <p><%= @event.date_time.strftime("%B %d, %Y %H:%M") %></p>
     <p><%= @event.location %></p>
     <p><strong><%= @event.visibility ? "Visible" : "Oculto" %></strong></p>
-    <%= link_to 'Editar Evento', edit_event_path(@event) %>
-    <%= link_to 'Borrar Evento', event_path(@event), data: {
-      turbo_method: :delete
-    } %>
+    <% if current_user %>
+      <%= link_to 'Asistir' , assist_event_path(@event), data: { turbo_method: :post } %>
+        <% if current_user && current_user.id == @event.user_id %>
+          <%= link_to 'Editar Evento', edit_event_path(@event) %>
+          <%= link_to 'Borrar Evento', event_path(@event), data: {
+            turbo_method: :delete
+          } %>
+        <% end %>
+    <% end %>
   </div>
 </div>

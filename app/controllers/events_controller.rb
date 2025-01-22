@@ -47,6 +47,17 @@ class EventsController < ApplicationController
       end
    end
 
+   def assist
+    event = Event.find(params[:id])
+    if current_user.attended_events.include?(event)
+      flash[:alert] = "Ya estas registrado para este evento"
+    else
+      current_user.attended_events << event
+      flash[:notice] = "Te has registrado exitosamente para el evento"
+    end
+    redirect_to event_path(event)
+   end
+
   private
 
   def event_params

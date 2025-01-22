@@ -4,7 +4,7 @@
     <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
     <%= link_to "Nuevo evento", new_event_path %>
   <% else %>
-    <%= button_to "Sign in", new_user_session_path %>
+    <%= button_to "Sign in", new_user_session_path, method: :get %>
   <% end %>
 
   <%= link_to "Home", events_path %>
