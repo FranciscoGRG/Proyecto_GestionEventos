@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
+
+  resources :attendances, only: [ :index, :create, :destroy ], param: :event_id
   resources :events do
-    member do
-      post "assist"
+    collection do
+      get "my_events"
     end
   end
-end
+  end

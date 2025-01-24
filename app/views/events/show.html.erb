@@ -8,12 +8,12 @@
     <p><%= @event.location %></p>
     <p><strong><%= @event.visibility ? "Visible" : "Oculto" %></strong></p>
     <% if current_user %>
-      <%= link_to 'Asistir' , assist_event_path(@event), data: { turbo_method: :post } %>
+      <%= link_to 'Asistir' , attendances_path(event_id: @event.id), data: { turbo_method: :post }, class: "bg-blue-500" %>
         <% if current_user && current_user.id == @event.user_id %>
-          <%= link_to 'Editar Evento', edit_event_path(@event) %>
-          <%= link_to 'Borrar Evento', event_path(@event), data: {
+          <%= link_to 'Editar', edit_event_path(@event), class: "bg-red-500" %>
+          <%= link_to 'Borrar', event_path(@event), data: {
             turbo_method: :delete
-          } %>
+          }, class: "bg-yellow-500" %>
         <% end %>
     <% end %>
   </div>
