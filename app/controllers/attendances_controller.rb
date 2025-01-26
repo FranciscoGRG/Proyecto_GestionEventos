@@ -17,6 +17,13 @@ class AttendancesController < ApplicationController
   end
 
   def destroy
-    
+    attendance = Attendance.find_by(user_id: params[:user_id], event_id: params[:event_id])
+    if attendance
+      attendance.destroy
+      flash[:notice] = "Has cancelado tu inscripción exitosamente"
+      redirect_to event_path(params[:event_id])
+    else
+      flash[:alert] = "No se ha encontrado la participacion de este evento"
+    end
   end
 end

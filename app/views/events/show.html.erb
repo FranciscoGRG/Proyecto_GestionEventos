@@ -17,4 +17,24 @@
         <% end %>
     <% end %>
   </div>
+
+  <% if current_user && current_user.id == @event.user_id %>
+    <div class="my-5">
+      <% if @event.users.any? %>
+        <ul class="list-disc pl-5">
+          <% @event.users.each do |attendee| %>
+            <li>
+              Email: <%= attendee.email %>
+              <%= link_to 'Eliminar asistente', attendance_path(@event, user_id: attendee.id), data: {
+                confirm:"¿Estas seguro que quieres eliminar a este asistente?",
+                turbo_method: :delete
+                }, class: "bg-yellow-500" %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No hay ningun usuario inscrito aun</p>
+  <% end %>
 </div>
