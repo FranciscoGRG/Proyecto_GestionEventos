@@ -1,0 +1,10 @@
+<%= form_with(url: send_email_path, method: :post, local: true) do |form| %>
+  <div class="mb-4">
+    <%= form.label :email, "Correo del usuario que quiere invitar:"%>
+    <%= form.email_field :email, required: true, class: "bg-red-200 block text-gray-700 font-medium"  %>
+
+    <%= form.hidden_field :event_id, value: @event.id %>
+
+    <%= form.submit "Enviar correo" %>
+  </div>
+<% end %>

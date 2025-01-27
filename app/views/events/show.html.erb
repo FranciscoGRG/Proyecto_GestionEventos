@@ -20,6 +20,7 @@
 
   <% if current_user && current_user.id == @event.user_id %>
     <div class="my-5">
+      <%= render 'emailForm' %>
       <% if @event.users.any? %>
         <ul class="list-disc pl-5">
           <% @event.users.each do |attendee| %>
@@ -32,9 +33,9 @@
             </li>
           <% end %>
         </ul>
+      <% else %>
+        <p>No hay ningun usuario inscrito aun</p>
       <% end %>
     </div>
-  <% else %>
-    <p>No hay ningun usuario inscrito aun</p>
   <% end %>
 </div>

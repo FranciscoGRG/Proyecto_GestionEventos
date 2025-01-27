@@ -26,4 +26,8 @@ class AttendancesController < ApplicationController
       flash[:alert] = "No se ha encontrado la participacion de este evento"
     end
   end
+
+  def attend
+    AttendanceMailer.attend.deliver_now
+  end
 end

@@ -14,4 +14,5 @@ Rails.application.routes.draw do
       get "my_events"
     end
   end
+  post "send_email", to: "emails#send_email", as: "send_email"
   end
